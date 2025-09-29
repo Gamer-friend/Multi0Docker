@@ -1,21 +1,21 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-merge-conflict
       - id: debug-statements
         exclude: ^weblate/trans/fixtures/simple-project.json|weblate/trans/tests/data/.*.json$
   - repo: https://github.com/adamchainz/django-upgrade
-    rev: 1.22.1
+    rev: 1.28.0
     hooks:
       - id: django-upgrade
         args: [--target-version, '5.0']
   - repo: https://github.com/asottile/blacken-docs
-    rev: 1.19.0
+    rev: 1.20.0
     hooks:
       - id: blacken-docs
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.21
+    rev: v0.24.1
     hooks:
       - id: validate-pyproject
         additional_dependencies:
