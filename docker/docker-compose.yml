@@ -1,0 +1,78 @@
+version: "3.9"
+
+services:
+  heimdall:
+    image: linuxserver/heimdall
+    container_name: heimdall
+    volumes:
+      - /home/user/appdata/heimdall:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped
+
+  nginx:
+    image: linuxserver/nginx
+    container_name: nginx
+    volumes:
+      - /home/user/appdata/nginx:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    ports:
+      - 81:80
+      - 444:443
+    restart: unless-stopped
+
+  mariadb:
+    image: linuxserver/mariadb
+    container_name: mariadb
+    volumes:
+      - /home/user/appdata/mariadb:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - MYSQL_ROOT_PASSWORD=ROOT_ACCESS_PASSWORD
+      - TZ=Europe/London
+    ports:
+      - 3306:3306
+    restart: unless-stopped
+
+  windows:
+    image: dockurr/windows
+    container_name: windows
+    environment:
+      VERSION: "11"
+    devices:
+      - /dev/kvm
+      - /dev/net/tun
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./windows:/storage
+    ports:
+      - 8006:8006
+      - 3389:3389/tcp
+      - 3389:3389/udp
+    restart: always
+    stop_grace_period: 2m
+
+  webtop:
+    image: lscr.io/linuxserver/webtop:latest
+    container_name: webtop
+    volumes:
+      - /home/user/appdata/webtop:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    ports:
+      - 3000:3000
+      - 3001:3001
+    shm_size: "1gb"
+    restart: unless-stopped
