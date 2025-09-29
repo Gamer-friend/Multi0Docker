@@ -35,7 +35,7 @@ jobs:
 
               docker buildx build "$dir" --tag "$IMAGE_NAME" --load
 
-              IMAGE_ID=ghcr.io/${{ github.repository }}/$IMAGE_NAME
+              IMAGE_ID=ghcr.io/$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')/$IMAGE_NAME
 
               VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
               [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo "$VERSION" | sed -e 's/^v//')
