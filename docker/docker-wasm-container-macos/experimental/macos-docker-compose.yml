@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  macos:
+    image: sickcodes/docker-osx:latest
+    container_name: macos
+    privileged: true
+    environment:
+      - RAM=4G
+      - CPU=2
+      - DISPLAY=:0
+    volumes:
+      - ./macos:/mnt
+    devices:
+      - /dev/kvm
+    ports:
+      - 50922:10022
+    restart: unless-stopped
