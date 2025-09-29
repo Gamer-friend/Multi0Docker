@@ -28,21 +28,22 @@ jobs:
       - name: Build and push all images in pkgs/
         run: |
           for dir in pkgs/*; do
-            [ -d "$dir" ] || continue
+            if [ -d "$dir" ]; then
+              IMAGE_NAME="${{ env.DEFAULT_IMAGE_NAME }}"
+              echo "📦 Building image from $dir as $IMAGE_NAME"
 
-            IMAGE_NAME="${{ env.DEFAULT_IMAGE_NAME }}"
-            echo "📦 Building image from $dir as $IMAGE_NAME"
+              cd "$dir"
+              docker build . --file Dockerfile --tag $IMAGE_NAME
+              cd -
 
-            cd "$dir"
-            docker build . --file Dockerfile --tag $IMAGE_NAME
-            cd -
+              IMAGE_ID=ghcr.io/${{ github.repository }}/$(echo $IMAGE_NAME | tr '[A-Z]' '[a-z]')
 
-            IMAGE_ID=ghcr.io/${{ github.repository }}/$(echo $IMAGE_NAME | tr '[A-Z]' '[a-z]')
+              VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+              [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+              [ "$VERSION" == "main" ] && VERSION=latest
 
-            VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-            [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-            [ "$VERSION" == "main" ] && VERSION=latest
-
-            echo "🚀 Tagging and pushing $IMAGE_ID:$VERSION"
-            docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-            docker push $IMAGE_ID:$VERSION
+              echo "🚀 Tagging and pushing $IMAGE_ID:$VERSION"
+              docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+              docker push $IMAGE_ID:$VERSION
+            fi
+          done
