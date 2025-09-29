@@ -12,10 +12,12 @@ To run the services defined in this project:
    cd docker/
 Start the containers:
 
-bash
+```bash
 docker compose up -d
+```
 To stop everything:
 
-bash
+```bash
 docker compose down
+```
 Make sure Docker is installed and running before you begin.
