@@ -6,7 +6,7 @@
 
 To run the services defined in this project:
 
-1. Open a terminal.
+1. Open a terminal in github codespaces after forking this project.
 2. Navigate to the `docker/` folder:
    ```bash
    cd docker/
