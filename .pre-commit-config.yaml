@@ -26,3 +26,7 @@ exclude: ^.*\.(csv|svg|wsdl(\.[^.]*)?)|weblate/trans/tests/data/memory-broken\.j
 
 ci:
   autoupdate_schedule: weekly
+# AUTO MESSAGE
+# ///////////////////////////////////////////////////// PRE COMMIT CI BOT ///////////////////////////////////////////////////////////////
+# error:
+#   maincontrol: false
