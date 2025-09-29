@@ -27,23 +27,24 @@ jobs:
 
       - name: Build and push all images in pkgs/
         run: |
+          set -e
           for dir in pkgs/*; do
-            if [ -d "$dir" ]; then
-              IMAGE_NAME="${{ env.DEFAULT_IMAGE_NAME }}"
+            if [ -d "$dir" ] && [ -f "$dir/Dockerfile" ]; then
+              IMAGE_NAME=$(echo "${{ env.DEFAULT_IMAGE_NAME }}" | tr '[:upper:] ' '[:lower:]-')
               echo "📦 Building image from $dir as $IMAGE_NAME"
 
-              cd "$dir"
-              docker build . --file Dockerfile --tag $IMAGE_NAME
-              cd -
+              docker buildx build "$dir" --tag "$IMAGE_NAME" --load
 
-              IMAGE_ID=ghcr.io/${{ github.repository }}/$(echo $IMAGE_NAME | tr '[A-Z]' '[a-z]')
+              IMAGE_ID=ghcr.io/${{ github.repository }}/$IMAGE_NAME
 
               VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-              [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+              [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo "$VERSION" | sed -e 's/^v//')
               [ "$VERSION" == "main" ] && VERSION=latest
 
               echo "🚀 Tagging and pushing $IMAGE_ID:$VERSION"
-              docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-              docker push $IMAGE_ID:$VERSION
+              docker tag "$IMAGE_NAME" "$IMAGE_ID:$VERSION"
+              docker push "$IMAGE_ID:$VERSION"
+            else
+              echo "⚠️ Skipping $dir — no Dockerfile found"
             fi
           done
