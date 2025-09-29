@@ -9,7 +9,7 @@ on:
   pull_request:
 
 env:
-  DEFAULT_IMAGE_NAME: Docker 1.2.0
+  DEFAULT_IMAGE_NAME: [DEV] Docker
 
 jobs:
   build_images:
