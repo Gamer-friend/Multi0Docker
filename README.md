@@ -25,3 +25,15 @@ To stop everything:
 docker compose down
 ```
 Make sure Docker is installed and running before you begin.
+
+# Ports 🛜
+Ports can be confusing in this project. This guide will help you determine which port is which type of VM machine.
+Port 80 - LINUX SERVER (Test, Not official VM!)
+Port 81 - LINUX SERVER CLIENT (Test, Not official VM!)
+Port 443 - SECOND LINUX SERVER (Test, Not official VM!)
+Port 444 - NGINX ENGINE ERROR (This was meant on purpose! NGINX would not let me use their official image, so I had to use another version!😭)
+Port 3000 - OFFICIAL LINUX SERVER 1 (Running 100% ✅)
+Port 3001 - OFFICIAL NGINX LINUX TEST (Again, Annoying NGINX)
+Port 3306 - ❌ NOT WORKING
+Port 3389 - ❌ NOT WORKING
+Port 8006 - ✅ OFFICIAL WINDOWS 11 SERVER VM, RUNNING.
