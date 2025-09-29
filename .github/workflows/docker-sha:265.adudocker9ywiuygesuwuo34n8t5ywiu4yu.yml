@@ -9,7 +9,7 @@ on:
   pull_request:
 
 env:
-  DEFAULT_IMAGE_NAME: (DEV)Docker
+  DEFAULT_IMAGE_NAME: Docker-main
 
 jobs:
   build_images:
