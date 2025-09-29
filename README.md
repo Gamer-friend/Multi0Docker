@@ -3,8 +3,8 @@
 [![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)](https://linuxserver.io)
 
 > [!WARNING]
-> This Project may take up to 100+ GB of storage if used at max for 24 hours. Make sure that you have created a codespace that has 32 GB!
-> If not, please change your machine type! For Help ON how to change the machine type, please click [This Article!](https://docs.github.com/en/codespaces/customizing-your-codespace/changing-the-machine-type-for-your-codespace?tool=webui#changing-the-machine-type)
+This Project may require up to 100 GB of storage if used at maximum for 24 hours. Ensure that you have created a codespace with 32 GB of storage.
+> If not, please change your machine type! For Help ON how to change the machine type, please click On [This Article!](https://docs.github.com/en/codespaces/customizing-your-codespace/changing-the-machine-type-for-your-codespace?tool=webui#changing-the-machine-type)
 
 # 🐳 Docker Setup
 
