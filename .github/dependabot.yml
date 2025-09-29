@@ -6,4 +6,4 @@ updates:
       interval: "daily"
       time: "00:00"
     commit-message:
-      prefix: "sha256:47fa6965bd55becc15cb797e60a6f3cdee29f1b2afea67e69"
+      prefix: "sha256:47fa6965bd55bcc15cb79e60a6f3cde29f1b2afea7e69"
