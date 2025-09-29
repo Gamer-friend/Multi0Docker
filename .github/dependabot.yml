@@ -5,3 +5,6 @@ updates:
     schedule:
       interval: "daily"
       time: "00:00"
+    commit-message:
+      prefix: "sha256:47fa6965bd55becc15cb797e60a6f3cdee29f1b2afea67e698551674fa19a6c8"
+      include: "scope"
