@@ -2,11 +2,15 @@
 <!-- Please read https://github.com/linuxserver/docker-webtop/blob/master/.github/CONTRIBUTING.md -->
 [![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)](https://linuxserver.io)
 
+> [!WARNING]
+> This Project may take up to 100+ GB of storage if used at max for 24 hours. Make sure that you have created a codespace that has 32 GB!
+> If not, please change your machine type! For Help ON how to change the machine type, please click [This Article!](https://docs.github.com/en/codespaces/customizing-your-codespace/changing-the-machine-type-for-your-codespace?tool=webui#changing-the-machine-type)
+
 # 🐳 Docker Setup
 
 To run the services defined in this project:
 
-1. Open a terminal in github codespaces after forking this project.
+1. Open a terminal in GitHub Codespaces after forking this project.
 2. Navigate to the `docker/` folder:
    ```bash
    cd docker/
